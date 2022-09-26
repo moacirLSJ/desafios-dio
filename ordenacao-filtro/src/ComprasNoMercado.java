@@ -1,6 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -26,13 +31,31 @@ import java.io.InputStreamReader;
  * A saída contém N linhas, cada uma representando uma lista de compra, sem os itens repetidos e em ordem alfabética.
  * <p>
  *
- *
+ * carne laranja suco picles laranja picles
+ * laranja pera laranja pera pera
  *
  */
 public class ComprasNoMercado {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int qtyOfLists = 0;
+        int qtyOfLists;
+        int qtyListsReaded = 0;
+        List<List<String>> listOfGrocery = new ArrayList<>();
+
         qtyOfLists = Integer.parseInt(br.readLine());
+        if (qtyOfLists<100 && qtyOfLists > 0){
+            while (qtyListsReaded < qtyOfLists){
+                String[] splittedList = br.readLine().split(" ");
+                List<String> uniqueList = Stream.of(splittedList).distinct()
+                        .sorted(Comparator.naturalOrder())
+                        .collect(Collectors.toList());
+                System.out.println(Stream.of(uniqueList).collect(Collectors.toList()).get(0));
+                listOfGrocery.add(uniqueList);
+
+                qtyListsReaded++;
+            }
+        }
+
+        listOfGrocery.forEach(System.out::println);
     }
 }
