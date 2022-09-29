@@ -43,9 +43,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 
 public class UniformesFimDeAno {
@@ -55,22 +53,25 @@ public class UniformesFimDeAno {
 
     public static void main(String[] args) throws IOException {
         String owner = "", l, color, size;
+//        List<Tshirt> tshirts = new ArrayList<>();
         Tshirt[] tshirts = null;
         Tshirt tshirt = null;
         int N = 0;
         int linesAlreadyRead = 0;
         boolean firstCase = true;
+
+        System.out.println("Digite um numero:");
+
         while (!(l = read()).equals("0")) {
 
             if (firstCase) {
                 firstCase = false;
                 N = toInt(l);
-                tshirts = new Tshirt[(N)];
+                tshirts = new Tshirt[N];
                 continue;
             }
 
             if (N <= 1 || N >= 60) break;
-            if (linesAlreadyRead > (2 * N) - 1) break;
 
             if ((linesAlreadyRead % 2) == 0) {
                 owner = l;
@@ -79,28 +80,17 @@ public class UniformesFimDeAno {
                 color = colorAndSizeArray[0];
                 size = colorAndSizeArray[1];
                 tshirt = new Tshirt(color, size, owner);
-                tshirts[linesAlreadyRead] = tshirt;
+//                tshirts.add(tshirt);
+                tshirts[tshirts.length - 1] = tshirt;
             }
 
             linesAlreadyRead++;
             out.close();
+//            if ((linesAlreadyRead ) > (2 * N) - 1) l = "0";
         }
 
 
-        Arrays.sort(tshirts, new Comparator<Tshirt>() {
-            @Override
-            public int compare(Tshirt t1, Tshirt t2) {
-                String color1 = t1.getColor();
-                String color2 = t2.getColor();
-                int diff = color1.compareTo(color2);
-
-                return diff;
-            }
-        });
-
-        Arrays.stream(tshirts).sorted((t1, t2) -> t1.getSize().compareTo(t2.getSize()));
-
-        System.out.println(Arrays.stream(tshirts).collect(Collectors.toList()));
+        System.out.println("test");
     }
 
     private static String read() throws IOException {
