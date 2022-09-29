@@ -42,8 +42,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UniformesFimDeAno {
@@ -53,7 +55,7 @@ public class UniformesFimDeAno {
 
     public static void main(String[] args) throws IOException {
         String owner = "", l, color, size;
-        Tshirt[] tshirts = null;
+        List<Tshirt> tshirts = new ArrayList<>();
         Tshirt tshirt = null;
         int N = 0;
         int linesAlreadyRead = 0;
@@ -66,7 +68,7 @@ public class UniformesFimDeAno {
             if (firstCase) {
                 firstCase = false;
                 N = toInt(l);
-                tshirts = new Tshirt[N];
+//                tshirts = new Tshirt[N];
                 continue;
             }
 
@@ -78,15 +80,22 @@ public class UniformesFimDeAno {
                 String[] colorAndSizeArray = l.split(" ");
                 color = colorAndSizeArray[0];
                 size = colorAndSizeArray[1];
-                tshirt = new Tshirt(color, size, owner);
-                tshirts[tshirts.length - 1] = tshirt;
+                tshirt = new Tshirt(size, color, owner);
+                tshirts.add(tshirt);
             }
 
             linesAlreadyRead++;
 //            out.close();
-            if ((linesAlreadyRead ) > (2 * N) - 1) break;
+            if ((linesAlreadyRead) > (2 * N) - 1) break;
         }
 
+        System.out.println(tshirts.stream().toList() + "\n");
+        tshirts = tshirts.stream().sorted(Comparator.comparing(Tshirt::getColor)
+                        .thenComparing(Tshirt::getSize, Comparator.reverseOrder())
+                        .thenComparing(Tshirt::getOwner))
+                .collect(Collectors.toList());
+
+        tshirts.forEach(System.out::println);
 
     }
 
