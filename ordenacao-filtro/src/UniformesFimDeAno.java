@@ -49,11 +49,10 @@ import java.util.Comparator;
 public class UniformesFimDeAno {
 
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-    static PrintWriter out = new PrintWriter(System.out);
+//    static PrintWriter out = new PrintWriter(System.out);
 
     public static void main(String[] args) throws IOException {
         String owner = "", l, color, size;
-//        List<Tshirt> tshirts = new ArrayList<>();
         Tshirt[] tshirts = null;
         Tshirt tshirt = null;
         int N = 0;
@@ -80,17 +79,15 @@ public class UniformesFimDeAno {
                 color = colorAndSizeArray[0];
                 size = colorAndSizeArray[1];
                 tshirt = new Tshirt(color, size, owner);
-//                tshirts.add(tshirt);
                 tshirts[tshirts.length - 1] = tshirt;
             }
 
             linesAlreadyRead++;
-            out.close();
-//            if ((linesAlreadyRead ) > (2 * N) - 1) l = "0";
+//            out.close();
+            if ((linesAlreadyRead ) > (2 * N) - 1) break;
         }
 
 
-        System.out.println("test");
     }
 
     private static String read() throws IOException {
