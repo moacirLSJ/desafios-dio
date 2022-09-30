@@ -39,6 +39,17 @@
  * 0
  */
 
+/*
+3
+Maria Joao
+branco P
+Marcio Guess
+vermelho P
+Maria Jose
+branco P
+
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -60,8 +71,6 @@ public class UniformesFimDeAno {
         int N = 0;
         int linesAlreadyRead = 0;
         boolean firstCase = true;
-
-        System.out.println("Digite um numero:");
 
         while (!(l = read()).equals("0")) {
 
