@@ -62,7 +62,6 @@ import java.util.stream.Collectors;
 public class UniformesFimDeAno {
 
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//    static PrintWriter out = new PrintWriter(System.out);
 
     public static void main(String[] args) throws IOException {
         String owner = "", l, color, size;
@@ -77,7 +76,6 @@ public class UniformesFimDeAno {
             if (firstCase) {
                 firstCase = false;
                 N = toInt(l);
-//                tshirts = new Tshirt[N];
                 continue;
             }
 
@@ -94,11 +92,9 @@ public class UniformesFimDeAno {
             }
 
             linesAlreadyRead++;
-//            out.close();
             if ((linesAlreadyRead) > (2 * N) - 1) break;
         }
 
-        System.out.println(tshirts.stream().toList() + "\n");
         tshirts = tshirts.stream().sorted(Comparator.comparing(Tshirt::getColor)
                         .thenComparing(Tshirt::getSize, Comparator.reverseOrder())
                         .thenComparing(Tshirt::getOwner))
