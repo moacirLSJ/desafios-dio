@@ -56,6 +56,6 @@ public class FilaBanco {
             changed = 0;
         }
 
-
+        br.close();
     }
 }
